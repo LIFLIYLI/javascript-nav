@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的导航页面</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+<body>
+    <main>
+        <div id="x"></div>
+    </main>
+    <footer></footer>
+    <script>
+        keys = {
+            '0': {0:'q',1:'w',2:'e',3:'r',4:'t',5:'y',6:'u',7:'i',8:'o',9:'p',length:'10'},
+            '1': {0:'a',1:'s',2:'d',3:'f',4:'g',5:'h',6:'j',7:'k',8:'l',length:'9'},
+            '2': {0:'z',1:'x',2:'c',3:'v',4:'b',5:'n',6:'m',length:'7'},
+            length:3
+        }
+        hash = {q:'qq.com',w:'weibo.com',y:'yahu.com',u:'uucom',i:'iqiyi.com',g:'github.com',l:'lol.com',z:'zhihu.com',v:'vivo.com'}
+        hashInLocalStorage =JSON.parse(localStorage.getItem('aaaaa') || 'null')
+        if(hashInLocalStorage){hash=hashInLocalStorage}
+        index = 0
+        while (index<keys['length']) {
+        du = document.createElement('div')
+        x.appendChild(du)
+
+            index2 = 0
+            vill = keys[index]
+            while (index2<vill['length']){
+                dudu = document.createElement('kbd')
+                dudu.textContent=vill[index2]
+                buttonx = document.createElement('button')
+                buttonx.textContent = '编辑'
+                buttonx.id =vill[index2]
+                buttonx.onclick = function(qwer){
+                    key=qwer['target']['id']
+                    zzz=prompt('给我一个网址')
+                    hash[key]=zzz
+                    localStorage.setItem('aaaaa',JSON.stringify(hash))
+                }
+                dudu.appendChild(buttonx)
+                du.appendChild(dudu)
+                index2 = index2+1
+            }
+        index = index+1
+        }
+        document.onkeypress= function(qwer){
+            key = qwer['key']
+            website =hash[key]
+            window.open('http://'+website,'_blank')    
+        }
+
+    </script>
+</body>
+</html>
