@@ -8,8 +8,10 @@
     <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 <body>
+    
     <main>
-        <div id="x"></div>
+        <div id="x">
+        </div>
     </main>
     <footer></footer>
     <script>
@@ -25,34 +27,48 @@
         index = 0
         while (index<keys['length']) {
         du = document.createElement('div')
+        du.className='row'
         x.appendChild(du)
 
             index2 = 0
             vill = keys[index]
             while (index2<vill['length']){
                 dudu = document.createElement('kbd')
-                dudu.textContent=vill[index2]
+                lala = document.createElement('span')
+                lala.textContent=vill[index2]
+                img = document.createElement('img')
+                if (hash[vill[index2]]){
+                    img.src='http://'+hash[vill[index2]]+'/favicon.ico'
+                }
+                else{
+                    img.src='https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-639904.png'
+                }
                 buttonx = document.createElement('button')
                 buttonx.textContent = '编辑'
                 buttonx.id =vill[index2]
                 buttonx.onclick = function(qwer){
-                    key=qwer['target']['id']
+                    button1 = qwer['target']
+                    img1=button1.previousSibling
+                    key=button1['id']
                     zzz=prompt('给我一个网址')
                     hash[key]=zzz
+                    img1.src='http://'+zzz+'/favicon.ico'
                     localStorage.setItem('aaaaa',JSON.stringify(hash))
-                }
+                }                
+                dudu.appendChild(lala)
+                dudu.appendChild(img)
                 dudu.appendChild(buttonx)
                 du.appendChild(dudu)
                 index2 = index2+1
             }
         index = index+1
         }
+        
         document.onkeypress= function(qwer){
             key = qwer['key']
             website =hash[key]
             window.open('http://'+website,'_blank')    
         }
-
     </script>
 </body>
 </html>
